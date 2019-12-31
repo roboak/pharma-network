@@ -52,9 +52,14 @@ class utils
     async fetchCompanyKey(ctx, companyCRN){
         let companyKey = await ctx.stub.createCompositeKey('company.', [companyCRN]);
         let companyBuffer = await ctx.stub.getState(companyKey);
-        let companyName = companyBuffer.toString();
-        let CompanyKey = await ctx.stub.createCompositeKey('org.pharma-network.pharmanet.company.', [companyCRN, companyName]);
-        return CompanyKey;
+        if (companyBuffer.length === 0)
+            throw new Error(companyCRN+' not registered on the network');
+        else{
+            let companyName = companyBuffer.toString();
+            let CompanyKey = await ctx.stub.createCompositeKey('org.pharma-network.pharmanet.company.', [companyCRN, companyName]);
+            return CompanyKey;
+        }
+
     }
 
     async fetchHierarchyKey(ctx, key){

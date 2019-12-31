@@ -1,0 +1,8 @@
+# Project exclude paths
+network/crypto-config
+network/bin
+chaincode/node_modules
+chaincode/package-lock.json
+app/identity
+app/node_modules
+app/package-lock.json

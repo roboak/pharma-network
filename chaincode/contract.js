@@ -252,8 +252,9 @@ class PharmanetContract extends Contract{
        console.log(drugObject);
        if(drugObject.owner === retailCompanyKey){
             drugObject.owner = customerAadhar;
-            let newDrugBuffer = Buffer.from(JSON.stringify(drugObject));
-            await ctx.stub.putState(drugKey, newDrugBuffer);
+            // let newDrugBuffer = Buffer.from(JSON.stringify(drugObject));
+            // await ctx.stub.putState(drugKey, newDrugBuffer);
+            await utils.putData(ctx, drugObject);
             console.log(drugObject);
             return drugObject;
        }
